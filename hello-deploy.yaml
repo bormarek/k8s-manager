@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+  labels:
+    app: hello-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-deploy   # <- musi zgadzać się z istniejącym selektorem
+  template:
+    metadata:
+      labels:
+        app: hello-deploy
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.25
+          ports:
+            - containerPort: 80
